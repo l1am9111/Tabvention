@@ -54,19 +54,19 @@ function fileAwayDemTabs(newTab)
 				}
 
 				var tabsToDelete = tabCount - localStorage.maxTabs;
-				var tabsList = []
+				var tabsList = [];
 				for(x=0; x<tabsToDelete; x++)
 				{
 					console.log(tabs[x]);
 					chrome.bookmarks.create({parentId : localStorage.dateFolderId, title: tabs[x].title, url: tabs[x].url});
 					//TODO: Don't create bookmark if in delete mode
 					chrome.tabs.remove(tabs[x].id);
-					tabsList.push({title: tabs[x].title, message: tabs[x].url})
+					tabsList.push({title: tabs[x].title, message: tabs[x].url});
 				}
 				if(tabsToDelete > 0)
 				{
-					var notificationTitle = tabsToDelete == 1 ? "Tab removed" : tabsToDelete + " tabs removed"
-					chrome.notifications.create({type: "list", iconUrl: "icon128.png", title: notificationTitle, message: notificationTitle, items: tabsList})
+					var notificationTitle = tabsToDelete == 1 ? "Tab removed" : tabsToDelete + " tabs removed";
+					chrome.notifications.create({type: "list", iconUrl: "icon128.png", title: notificationTitle, message: notificationTitle, items: tabsList});
 				}
 			}
 
